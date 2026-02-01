@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_home_carrusel_heroes",
+  "info": {
+    "displayName": "CarruselHero"
+  },
+  "options": {},
+  "attributes": {
+    "videosCarrusel": {
+      "type": "component",
+      "repeatable": true,
+      "component": "home.video-carrusel",
+      "required": true
+    }
+  }
+}

@@ -16,13 +16,15 @@
     }
   },
   "attributes": {
-    "Titulo": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+    "HeroHome": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.hero-home"
+    },
+    "VideoCarrusel": {
+      "type": "component",
+      "repeatable": true,
+      "component": "home.video-carrusel"
     }
   }
 }
