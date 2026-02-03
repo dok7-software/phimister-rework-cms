@@ -4,7 +4,8 @@
   "info": {
     "singularName": "ex-participant",
     "pluralName": "ex-participants",
-    "displayName": "ExParticipant"
+    "displayName": "ExParticipant",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,11 +16,11 @@
     }
   },
   "attributes": {
-    "name": {
+    "nombre": {
       "type": "string",
       "required": true
     },
-    "currentRole": {
+    "rolActual": {
       "type": "string",
       "required": true,
       "pluginOptions": {
@@ -28,7 +29,7 @@
         }
       }
     },
-    "company": {
+    "empresa": {
       "type": "string",
       "required": true
     },
@@ -36,7 +37,9 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "linkedIn": {
       "type": "string",
@@ -52,4 +55,3 @@
     }
   }
 }
-

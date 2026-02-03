@@ -60,12 +60,23 @@
     },
     "tipo": {
       "type": "enumeration",
-      "enum": ["Aceleración", "Bootcamp", "Programa", "Curso", "Posgrado", "Máster"],
+      "enum": [
+        "Aceleración",
+        "Bootcamp",
+        "Programa",
+        "Curso",
+        "Posgrado",
+        "Máster"
+      ],
       "required": true
     },
     "nivel": {
       "type": "enumeration",
-      "enum": ["Inicial", "Intermedio", "Avanzado"],
+      "enum": [
+        "Inicial",
+        "Intermedio",
+        "Avanzado"
+      ],
       "required": true,
       "pluginOptions": {
         "i18n": {
@@ -75,7 +86,13 @@
     },
     "modalidad": {
       "type": "enumeration",
-      "enum": ["Presencial", "Online", "Híbrido", "Barcelona", "San Francisco"],
+      "enum": [
+        "Presencial",
+        "Online",
+        "Híbrido",
+        "Barcelona",
+        "San Francisco"
+      ],
       "required": true,
       "pluginOptions": {
         "i18n": {
@@ -132,19 +149,25 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "miniatura": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "imagenPrograma": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "videoMasterclass": {
       "type": "component",
@@ -155,12 +178,9 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["files"]
-    },
-    "etiquetas": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::program-tag.program-tag"
+      "allowedTypes": [
+        "files"
+      ]
     },
     "objetivosAprendizaje": {
       "type": "component",

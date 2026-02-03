@@ -373,6 +373,7 @@ export interface ApiExParticipantExParticipant
   extends Struct.CollectionTypeSchema {
   collectionName: 'ex_participants';
   info: {
+    description: '';
     displayName: 'ExParticipant';
     pluralName: 'ex-participants';
     singularName: 'ex-participant';
@@ -388,17 +389,10 @@ export interface ApiExParticipantExParticipant
   attributes: {
     avatar: Schema.Attribute.Media<'images'>;
     cohort: Schema.Attribute.String;
-    company: Schema.Attribute.String & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    currentRole: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    empresa: Schema.Attribute.String & Schema.Attribute.Required;
     instagram: Schema.Attribute.String;
     linkedIn: Schema.Attribute.String;
     locale: Schema.Attribute.String;
@@ -406,8 +400,15 @@ export interface ApiExParticipantExParticipant
       'oneToMany',
       'api::ex-participant.ex-participant'
     >;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
+    nombre: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    rolActual: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -447,46 +448,6 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     VideoCarrusel: Schema.Attribute.Component<'home.video-carrusel', true>;
-  };
-}
-
-export interface ApiProgramTagProgramTag extends Struct.CollectionTypeSchema {
-  collectionName: 'program_tags';
-  info: {
-    displayName: 'ProgramTag';
-    pluralName: 'program-tags';
-    singularName: 'program-tag';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    color: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::program-tag.program-tag'
-    >;
-    name: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
   };
 }
 
@@ -541,10 +502,6 @@ export interface ApiProgramaPrograma extends Struct.CollectionTypeSchema {
     esSubvencionado: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
-    etiquetas: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::program-tag.program-tag'
-    >;
     exParticipantes: Schema.Attribute.Relation<
       'manyToMany',
       'api::ex-participant.ex-participant'
@@ -1199,7 +1156,6 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::ex-participant.ex-participant': ApiExParticipantExParticipant;
       'api::home.home': ApiHomeHome;
-      'api::program-tag.program-tag': ApiProgramTagProgramTag;
       'api::programa.programa': ApiProgramaPrograma;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
       'plugin::content-releases.release': PluginContentReleasesRelease;
