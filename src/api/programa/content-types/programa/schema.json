@@ -1,0 +1,199 @@
+{
+  "kind": "collectionType",
+  "collectionName": "programas",
+  "info": {
+    "singularName": "programa",
+    "pluralName": "programas",
+    "displayName": "Programa",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "targetField": "nombre",
+      "required": true,
+      "unique": true
+    },
+    "nombre": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "descripcionCorta": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "descripcionCompleta": {
+      "type": "richtext",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "contenidoExpandible": {
+      "type": "richtext",
+      "required": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "tipo": {
+      "type": "enumeration",
+      "enum": ["Aceleración", "Bootcamp", "Programa", "Curso", "Posgrado", "Máster"],
+      "required": true
+    },
+    "nivel": {
+      "type": "enumeration",
+      "enum": ["Inicial", "Intermedio", "Avanzado"],
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "modalidad": {
+      "type": "enumeration",
+      "enum": ["Presencial", "Online", "Híbrido", "Barcelona", "San Francisco"],
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "duracion": {
+      "type": "string",
+      "required": true
+    },
+    "requisitoEdad": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "ubicacion": {
+      "type": "string",
+      "required": false
+    },
+    "fechaInicio": {
+      "type": "date",
+      "required": false
+    },
+    "fechaFin": {
+      "type": "date",
+      "required": false
+    },
+    "destacado": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "activo": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "esSubvencionado": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "paginaActiva": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "imagenHero": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "miniatura": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "imagenPrograma": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "videoMasterclass": {
+      "type": "component",
+      "repeatable": false,
+      "component": "programa.video-masterclass"
+    },
+    "dossier": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["files"]
+    },
+    "etiquetas": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::program-tag.program-tag"
+    },
+    "objetivosAprendizaje": {
+      "type": "component",
+      "repeatable": true,
+      "component": "programa.objetivo-aprendizaje"
+    },
+    "testimonios": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::testimonial.testimonial"
+    },
+    "exParticipantes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::ex-participant.ex-participant"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "programa.cta-programa"
+    },
+    "tituloSEO": {
+      "type": "string",
+      "required": false
+    },
+    "descripcionSEO": {
+      "type": "text",
+      "required": false
+    },
+    "preguntasFrecuentes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "programa.pregunta-frecuente"
+    }
+  }
+}

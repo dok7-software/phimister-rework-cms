@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_programa_objetivo_aprendizajes",
+  "info": {
+    "displayName": "ObjetivoAprendizaje"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "descripcion": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "icono": {
+      "type": "string",
+      "required": false
+    },
+    "badge": {
+      "type": "string",
+      "required": false
+    },
+    "orden": {
+      "type": "integer",
+      "required": false
+    }
+  }
+}
+

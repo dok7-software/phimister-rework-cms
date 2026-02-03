@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_programa_video_masterclasses",
+  "info": {
+    "displayName": "VideoMasterclass"
+  },
+  "options": {},
+  "attributes": {
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["videos"]
+    },
+    "plataforma": {
+      "type": "enumeration",
+      "enum": ["youtube", "vimeo", "uploaded"],
+      "required": false
+    },
+    "embedId": {
+      "type": "string",
+      "required": false
+    },
+    "url": {
+      "type": "string",
+      "required": false
+    }
+  }
+}
+

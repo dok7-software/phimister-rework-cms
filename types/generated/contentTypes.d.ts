@@ -369,6 +369,51 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiExParticipantExParticipant
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'ex_participants';
+  info: {
+    displayName: 'ExParticipant';
+    pluralName: 'ex-participants';
+    singularName: 'ex-participant';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    avatar: Schema.Attribute.Media<'images'>;
+    cohort: Schema.Attribute.String;
+    company: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    currentRole: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    instagram: Schema.Attribute.String;
+    linkedIn: Schema.Attribute.String;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ex-participant.ex-participant'
+    >;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHomeHome extends Struct.SingleTypeSchema {
   collectionName: 'homes';
   info: {
@@ -402,6 +447,244 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     VideoCarrusel: Schema.Attribute.Component<'home.video-carrusel', true>;
+  };
+}
+
+export interface ApiProgramTagProgramTag extends Struct.CollectionTypeSchema {
+  collectionName: 'program_tags';
+  info: {
+    displayName: 'ProgramTag';
+    pluralName: 'program-tags';
+    singularName: 'program-tag';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    color: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::program-tag.program-tag'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProgramaPrograma extends Struct.CollectionTypeSchema {
+  collectionName: 'programas';
+  info: {
+    description: '';
+    displayName: 'Programa';
+    pluralName: 'programas';
+    singularName: 'programa';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    activo: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    contenidoExpandible: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    cta: Schema.Attribute.Component<'programa.cta-programa', false>;
+    descripcionCompleta: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    descripcionCorta: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    descripcionSEO: Schema.Attribute.Text;
+    destacado: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    dossier: Schema.Attribute.Media<'files'>;
+    duracion: Schema.Attribute.String & Schema.Attribute.Required;
+    esSubvencionado: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    etiquetas: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::program-tag.program-tag'
+    >;
+    exParticipantes: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::ex-participant.ex-participant'
+    >;
+    fechaFin: Schema.Attribute.Date;
+    fechaInicio: Schema.Attribute.Date;
+    imagenHero: Schema.Attribute.Media<'images'>;
+    imagenPrograma: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::programa.programa'
+    >;
+    miniatura: Schema.Attribute.Media<'images'>;
+    modalidad: Schema.Attribute.Enumeration<
+      ['Presencial', 'Online', 'H\u00EDbrido', 'Barcelona', 'San Francisco']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    nivel: Schema.Attribute.Enumeration<['Inicial', 'Intermedio', 'Avanzado']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    nombre: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    objetivosAprendizaje: Schema.Attribute.Component<
+      'programa.objetivo-aprendizaje',
+      true
+    >;
+    paginaActiva: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    preguntasFrecuentes: Schema.Attribute.Component<
+      'programa.pregunta-frecuente',
+      true
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    requisitoEdad: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Schema.Attribute.UID<'nombre'> &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    testimonios: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::testimonial.testimonial'
+    >;
+    tipo: Schema.Attribute.Enumeration<
+      [
+        'Aceleraci\u00F3n',
+        'Bootcamp',
+        'Programa',
+        'Curso',
+        'Posgrado',
+        'M\u00E1ster',
+      ]
+    > &
+      Schema.Attribute.Required;
+    tituloSEO: Schema.Attribute.String;
+    ubicacion: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    videoMasterclass: Schema.Attribute.Component<
+      'programa.video-masterclass',
+      false
+    >;
+  };
+}
+
+export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
+  collectionName: 'testimonials';
+  info: {
+    displayName: 'Testimonial';
+    pluralName: 'testimonials';
+    singularName: 'testimonial';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    avatar: Schema.Attribute.Media<'images'>;
+    company: Schema.Attribute.String;
+    content: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::testimonial.testimonial'
+    >;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    program: Schema.Attribute.Relation<'manyToOne', 'api::programa.programa'>;
+    publishedAt: Schema.Attribute.DateTime;
+    rating: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+          min: 1;
+        },
+        number
+      >;
+    role: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -914,7 +1197,11 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::ex-participant.ex-participant': ApiExParticipantExParticipant;
       'api::home.home': ApiHomeHome;
+      'api::program-tag.program-tag': ApiProgramTagProgramTag;
+      'api::programa.programa': ApiProgramaPrograma;
+      'api::testimonial.testimonial': ApiTestimonialTestimonial;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

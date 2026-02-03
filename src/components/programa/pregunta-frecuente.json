@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_programa_pregunta_frecuentes",
+  "info": {
+    "displayName": "PreguntaFrecuente"
+  },
+  "options": {},
+  "attributes": {
+    "pregunta": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "respuesta": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "orden": {
+      "type": "integer",
+      "required": false
+    }
+  }
+}
+

@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ex_participants",
+  "info": {
+    "singularName": "ex-participant",
+    "pluralName": "ex-participants",
+    "displayName": "ExParticipant"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "currentRole": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "company": {
+      "type": "string",
+      "required": true
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "linkedIn": {
+      "type": "string",
+      "required": false
+    },
+    "instagram": {
+      "type": "string",
+      "required": false
+    },
+    "cohort": {
+      "type": "string",
+      "required": false
+    }
+  }
+}
+

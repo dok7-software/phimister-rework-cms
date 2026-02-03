@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_programa_cta_programas",
+  "info": {
+    "displayName": "CtaPrograma"
+  },
+  "options": {},
+  "attributes": {
+    "texto": {
+      "type": "text",
+      "required": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "url": {
+      "type": "string",
+      "required": false
+    },
+    "tipo": {
+      "type": "enumeration",
+      "enum": ["primary", "secondary"],
+      "required": false
+    }
+  }
+}
+
