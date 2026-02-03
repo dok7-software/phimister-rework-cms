@@ -19,7 +19,12 @@
     "HeroHome": {
       "type": "component",
       "repeatable": false,
-      "component": "home.hero-home"
+      "component": "home.hero-home",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "VideoCarrusel": {
       "type": "component",
