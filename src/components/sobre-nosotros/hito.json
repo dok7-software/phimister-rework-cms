@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_sobre_nosotros_hitos",
+  "info": {
+    "displayName": "Hito"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "descripcion": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "valor": {
+      "type": "string",
+      "required": false
+    },
+    "icono": {
+      "type": "string",
+      "required": false
+    },
+    "orden": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}
+

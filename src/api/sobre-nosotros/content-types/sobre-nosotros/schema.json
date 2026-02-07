@@ -1,0 +1,99 @@
+{
+  "kind": "singleType",
+  "collectionName": "sobre_nosotros",
+  "info": {
+    "singularName": "sobre-nosotros",
+    "pluralName": "sobre-nosotros-pages",
+    "displayName": "Sobre Nosotros",
+    "description": "Página About Us de Phimister"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sobre-nosotros.hero-sobre-nosotros",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "sobrePhimister": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sobre-nosotros.sobre-phimister",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "equipo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sobre-nosotros.equipo",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "miembrosEquipo": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::miembro-equipo.miembro-equipo"
+    },
+    "experienciaInternacional": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sobre-nosotros.experiencia-internacional",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "partners": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sobre-nosotros.partners",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "socios": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::socio.socio"
+    },
+    "tituloSEO": {
+      "type": "string",
+      "required": false
+    },
+    "descripcionSEO": {
+      "type": "text",
+      "required": false
+    },
+    "publicado": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  }
+}
+

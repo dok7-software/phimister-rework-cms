@@ -451,6 +451,58 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiMiembroEquipoMiembroEquipo
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'miembros_equipo';
+  info: {
+    description: 'Miembros del equipo de Phimister';
+    displayName: 'Miembro del Equipo';
+    pluralName: 'miembros-equipo';
+    singularName: 'miembro-equipo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    biografia: Schema.Attribute.RichText &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    cargo: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    foto: Schema.Attribute.Media<'images'>;
+    linkedIn: Schema.Attribute.String;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::miembro-equipo.miembro-equipo'
+    >;
+    nombre: Schema.Attribute.String & Schema.Attribute.Required;
+    orden: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    twitter: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProgramTagProgramTag extends Struct.CollectionTypeSchema {
   collectionName: 'program_tags';
   info: {
@@ -636,6 +688,131 @@ export interface ApiProgramaPrograma extends Struct.CollectionTypeSchema {
       'programa.video-masterclass',
       false
     >;
+  };
+}
+
+export interface ApiSobreNosotrosSobreNosotros extends Struct.SingleTypeSchema {
+  collectionName: 'sobre_nosotros';
+  info: {
+    description: 'P\u00E1gina About Us de Phimister';
+    displayName: 'Sobre Nosotros';
+    pluralName: 'sobre-nosotros-pages';
+    singularName: 'sobre-nosotros';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcionSEO: Schema.Attribute.Text;
+    equipo: Schema.Attribute.Component<'sobre-nosotros.equipo', false> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    experienciaInternacional: Schema.Attribute.Component<
+      'sobre-nosotros.experiencia-internacional',
+      false
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    hero: Schema.Attribute.Component<
+      'sobre-nosotros.hero-sobre-nosotros',
+      false
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sobre-nosotros.sobre-nosotros'
+    >;
+    miembrosEquipo: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::miembro-equipo.miembro-equipo'
+    >;
+    partners: Schema.Attribute.Component<'sobre-nosotros.partners', false> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publicado: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    publishedAt: Schema.Attribute.DateTime;
+    sobrePhimister: Schema.Attribute.Component<
+      'sobre-nosotros.sobre-phimister',
+      false
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    socios: Schema.Attribute.Relation<'manyToMany', 'api::socio.socio'>;
+    tituloSEO: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSocioSocio extends Struct.CollectionTypeSchema {
+  collectionName: 'socios';
+  info: {
+    description: 'Partners y socios de Phimister';
+    displayName: 'Socio';
+    pluralName: 'socios';
+    singularName: 'socio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::socio.socio'>;
+    logo: Schema.Attribute.Media<'images'>;
+    nombre: Schema.Attribute.String & Schema.Attribute.Required;
+    orden: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String;
   };
 }
 
@@ -1207,8 +1384,11 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::ex-participant.ex-participant': ApiExParticipantExParticipant;
       'api::home.home': ApiHomeHome;
+      'api::miembro-equipo.miembro-equipo': ApiMiembroEquipoMiembroEquipo;
       'api::program-tag.program-tag': ApiProgramTagProgramTag;
       'api::programa.programa': ApiProgramaPrograma;
+      'api::sobre-nosotros.sobre-nosotros': ApiSobreNosotrosSobreNosotros;
+      'api::socio.socio': ApiSocioSocio;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

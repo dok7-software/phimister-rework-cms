@@ -1,0 +1,8 @@
+/**
+ * miembro-equipo router
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::miembro-equipo.miembro-equipo' as any);
+

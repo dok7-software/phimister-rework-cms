@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sobre_nosotros_coordenadas",
+  "info": {
+    "displayName": "Coordenadas"
+  },
+  "options": {},
+  "attributes": {
+    "latitud": {
+      "type": "decimal",
+      "required": false
+    },
+    "longitud": {
+      "type": "decimal",
+      "required": false
+    }
+  }
+}
+

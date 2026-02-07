@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_sobre_nosotros_hero_sobre_nosotros",
+  "info": {
+    "displayName": "Hero Sobre Nosotros"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "subtitulo": {
+      "type": "text",
+      "required": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sobre-nosotros.cta"
+    }
+  }
+}
+

@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_sobre_nosotros_experiencia_internacionals",
+  "info": {
+    "displayName": "Experiencia Internacional"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "contenido": {
+      "type": "richtext",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "hitos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sobre-nosotros.hito"
+    },
+    "ubicaciones": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sobre-nosotros.ubicacion"
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}
+

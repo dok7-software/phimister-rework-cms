@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_sobre_nosotros_ubicaciones",
+  "info": {
+    "displayName": "Ubicación"
+  },
+  "options": {},
+  "attributes": {
+    "pais": {
+      "type": "string",
+      "required": true
+    },
+    "ciudad": {
+      "type": "string",
+      "required": false
+    },
+    "bandera": {
+      "type": "string",
+      "required": false
+    },
+    "descripcion": {
+      "type": "text",
+      "required": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "coordenadas": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sobre-nosotros.coordenadas"
+    }
+  }
+}
+

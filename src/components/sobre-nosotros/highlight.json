@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sobre_nosotros_highlights",
+  "info": {
+    "displayName": "Highlight"
+  },
+  "options": {},
+  "attributes": {
+    "texto": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "icono": {
+      "type": "string",
+      "required": false
+    }
+  }
+}
+

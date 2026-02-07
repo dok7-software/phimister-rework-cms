@@ -170,6 +170,219 @@ export interface ProgramaVideoMasterclass extends Struct.ComponentSchema {
   };
 }
 
+export interface SobreNosotrosCoordenadas extends Struct.ComponentSchema {
+  collectionName: 'components_sobre_nosotros_coordenadas';
+  info: {
+    displayName: 'Coordenadas';
+  };
+  attributes: {
+    latitud: Schema.Attribute.Decimal;
+    longitud: Schema.Attribute.Decimal;
+  };
+}
+
+export interface SobreNosotrosCta extends Struct.ComponentSchema {
+  collectionName: 'components_sobre_nosotros_ctas';
+  info: {
+    displayName: 'CTA';
+  };
+  attributes: {
+    texto: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tipo: Schema.Attribute.Enumeration<['primary', 'secondary']>;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface SobreNosotrosEquipo extends Struct.ComponentSchema {
+  collectionName: 'components_sobre_nosotros_equipos';
+  info: {
+    displayName: 'Equipo';
+  };
+  attributes: {
+    subtitulo: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    titulo: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
+export interface SobreNosotrosExperienciaInternacional
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sobre_nosotros_experiencia_internacionals';
+  info: {
+    displayName: 'Experiencia Internacional';
+  };
+  attributes: {
+    contenido: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    hitos: Schema.Attribute.Component<'sobre-nosotros.hito', true>;
+    imagen: Schema.Attribute.Media<'images'>;
+    titulo: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ubicaciones: Schema.Attribute.Component<'sobre-nosotros.ubicacion', true>;
+  };
+}
+
+export interface SobreNosotrosHeroSobreNosotros extends Struct.ComponentSchema {
+  collectionName: 'components_sobre_nosotros_hero_sobre_nosotros';
+  info: {
+    displayName: 'Hero Sobre Nosotros';
+  };
+  attributes: {
+    cta: Schema.Attribute.Component<'sobre-nosotros.cta', false>;
+    imagen: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    subtitulo: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    titulo: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
+export interface SobreNosotrosHighlight extends Struct.ComponentSchema {
+  collectionName: 'components_sobre_nosotros_highlights';
+  info: {
+    displayName: 'Highlight';
+  };
+  attributes: {
+    icono: Schema.Attribute.String;
+    texto: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
+export interface SobreNosotrosHito extends Struct.ComponentSchema {
+  collectionName: 'components_sobre_nosotros_hitos';
+  info: {
+    displayName: 'Hito';
+  };
+  attributes: {
+    descripcion: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    icono: Schema.Attribute.String;
+    orden: Schema.Attribute.Integer & Schema.Attribute.Required;
+    titulo: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    valor: Schema.Attribute.String;
+  };
+}
+
+export interface SobreNosotrosPartners extends Struct.ComponentSchema {
+  collectionName: 'components_sobre_nosotros_partners';
+  info: {
+    displayName: 'Partners';
+  };
+  attributes: {
+    subtitulo: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    titulo: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
+export interface SobreNosotrosSobrePhimister extends Struct.ComponentSchema {
+  collectionName: 'components_sobre_nosotros_sobre_phimisters';
+  info: {
+    displayName: 'Sobre Phimister';
+  };
+  attributes: {
+    contenido: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    highlights: Schema.Attribute.Component<'sobre-nosotros.highlight', true>;
+    imagenes: Schema.Attribute.Media<'images', true>;
+    titulo: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
+export interface SobreNosotrosUbicacion extends Struct.ComponentSchema {
+  collectionName: 'components_sobre_nosotros_ubicaciones';
+  info: {
+    displayName: 'Ubicaci\u00F3n';
+  };
+  attributes: {
+    bandera: Schema.Attribute.String;
+    ciudad: Schema.Attribute.String;
+    coordenadas: Schema.Attribute.Component<
+      'sobre-nosotros.coordenadas',
+      false
+    >;
+    descripcion: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pais: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -180,6 +393,16 @@ declare module '@strapi/strapi' {
       'programa.objetivo-aprendizaje': ProgramaObjetivoAprendizaje;
       'programa.pregunta-frecuente': ProgramaPreguntaFrecuente;
       'programa.video-masterclass': ProgramaVideoMasterclass;
+      'sobre-nosotros.coordenadas': SobreNosotrosCoordenadas;
+      'sobre-nosotros.cta': SobreNosotrosCta;
+      'sobre-nosotros.equipo': SobreNosotrosEquipo;
+      'sobre-nosotros.experiencia-internacional': SobreNosotrosExperienciaInternacional;
+      'sobre-nosotros.hero-sobre-nosotros': SobreNosotrosHeroSobreNosotros;
+      'sobre-nosotros.highlight': SobreNosotrosHighlight;
+      'sobre-nosotros.hito': SobreNosotrosHito;
+      'sobre-nosotros.partners': SobreNosotrosPartners;
+      'sobre-nosotros.sobre-phimister': SobreNosotrosSobrePhimister;
+      'sobre-nosotros.ubicacion': SobreNosotrosUbicacion;
     }
   }
 }

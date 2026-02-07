@@ -1,0 +1,8 @@
+/**
+ * sobre-nosotros router
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::sobre-nosotros.sobre-nosotros' as any);
+
