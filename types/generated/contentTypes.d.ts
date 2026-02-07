@@ -611,6 +611,7 @@ export interface ApiProgramaPrograma extends Struct.CollectionTypeSchema {
     >;
     fechaFin: Schema.Attribute.Date;
     fechaInicio: Schema.Attribute.Date;
+    formulario: Schema.Attribute.Text;
     imagenHero: Schema.Attribute.Media<'images'>;
     imagenPrograma: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String;
