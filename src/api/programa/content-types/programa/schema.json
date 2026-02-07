@@ -197,6 +197,11 @@
       "relation": "manyToMany",
       "target": "api::ex-participant.ex-participant"
     },
+    "etiquetas": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::program-tag.program-tag"
+    },
     "cta": {
       "type": "component",
       "repeatable": false,

@@ -451,6 +451,53 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiProgramTagProgramTag extends Struct.CollectionTypeSchema {
+  collectionName: 'program_tags';
+  info: {
+    description: 'Etiquetas para categorizar programas';
+    displayName: 'Program Tag';
+    pluralName: 'program-tags';
+    singularName: 'program-tag';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    color: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::program-tag.program-tag'
+    >;
+    nombre: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProgramaPrograma extends Struct.CollectionTypeSchema {
   collectionName: 'programas';
   info: {
@@ -502,6 +549,10 @@ export interface ApiProgramaPrograma extends Struct.CollectionTypeSchema {
     esSubvencionado: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
+    etiquetas: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::program-tag.program-tag'
+    >;
     exParticipantes: Schema.Attribute.Relation<
       'manyToMany',
       'api::ex-participant.ex-participant'
@@ -1156,6 +1207,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::ex-participant.ex-participant': ApiExParticipantExParticipant;
       'api::home.home': ApiHomeHome;
+      'api::program-tag.program-tag': ApiProgramTagProgramTag;
       'api::programa.programa': ApiProgramaPrograma;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
       'plugin::content-releases.release': PluginContentReleasesRelease;

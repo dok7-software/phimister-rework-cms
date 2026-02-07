@@ -1,7 +1,7 @@
 # 📚 Documentación API - Phimister Business School
 ## Strapi v5 - Integración Frontend
 
-Esta documentación describe cómo consumir la API de Strapi v5 para obtener información de programas, etiquetas, testimonios y ex-participantes.
+Esta documentación describe cómo consumir la API de Strapi v5 para obtener información de programas, testimonios y ex-participantes.
 
 ---
 
@@ -27,7 +27,7 @@ Authorization: Bearer YOUR_API_TOKEN
 **Cómo obtener un API Token:**
 1. Ve a Strapi Admin → Settings → API Tokens
 2. Crea un nuevo token con tipo `Read-only`
-3. Asigna permisos a: `programa.find`, `programa.findOne`, `program-tag.find`, `testimonial.find`, `ex-participant.find`
+3. Asigna permisos a: `programa.find`, `programa.findOne`, `testimonial.find`, `ex-participant.find`
 4. Copia el token generado
 
 #### Opción 2: Sin autenticación (si los permisos públicos están habilitados)
@@ -83,7 +83,7 @@ GET https://railwayapp-strapi-production-2d73.up.railway.app/api/programas?filte
 **Parámetros de populate específicos (Strapi v5):**
 ```bash
 # Popular solo campos específicos
-GET /api/programas?filters[slug][$eq]=talento-joven&locale=es&populate[etiquetas]=*&populate[testimonios]=*&populate[exParticipantes]=*&populate[videoMasterclass][populate]=*&populate[objetivosAprendizaje]=*&populate[cta]=*&populate[preguntasFrecuentes]=*
+GET /api/programas?filters[slug][$eq]=talento-joven&locale=es&populate[testimonios]=*&populate[exParticipantes]=*&populate[videoMasterclass][populate]=*&populate[objetivosAprendizaje]=*&populate[cta]=*&populate[preguntasFrecuentes]=*
 ```
 
 #### Estructura de Respuesta - Programa Completo
@@ -220,24 +220,6 @@ GET /api/programas?filters[slug][$eq]=talento-joven&locale=es&populate[etiquetas
           }
         }
       },
-      "etiquetas": {
-        "data": [
-          {
-            "id": 1,
-            "documentId": "tag1",
-            "name": "Emprendimiento",
-            "slug": "emprendimiento",
-            "color": "#F97000"
-          },
-          {
-            "id": 2,
-            "documentId": "tag2",
-            "name": "Liderazgo",
-            "slug": "liderazgo",
-            "color": "#0066CC"
-          }
-        ]
-      },
       "objetivosAprendizaje": [
         {
           "id": 1,
@@ -333,49 +315,7 @@ GET /api/programas?filters[slug][$eq]=talento-joven&locale=es&populate[etiquetas
 
 ---
 
-### 2. Etiquetas de Programas (Program Tags)
-
-#### Obtener todas las etiquetas
-
-```http
-GET /api/program-tags?locale={locale}
-```
-
-**Ejemplo:**
-```bash
-GET https://railwayapp-strapi-production-2d73.up.railway.app/api/program-tags?locale=es
-```
-
-**Estructura de Respuesta:**
-```json
-{
-  "data": [
-    {
-      "id": 1,
-      "documentId": "tag1",
-      "name": "Emprendimiento",
-      "slug": "emprendimiento",
-      "color": "#F97000",
-      "createdAt": "2026-01-01T00:00:00.000Z",
-      "updatedAt": "2026-01-01T00:00:00.000Z",
-      "publishedAt": "2026-01-01T00:00:00.000Z",
-      "locale": "es"
-    }
-  ],
-  "meta": {
-    "pagination": {
-      "page": 1,
-      "pageSize": 25,
-      "pageCount": 1,
-      "total": 1
-    }
-  }
-}
-```
-
----
-
-### 3. Testimonios (Testimonials)
+### 2. Testimonios (Testimonials)
 
 #### Obtener todos los testimonios
 
@@ -441,7 +381,7 @@ GET /api/testimonials?locale=es&filters[program][slug][$eq]=talento-joven&popula
 
 ---
 
-### 4. Ex-Participantes (Ex-Participants)
+### 3. Ex-Participantes (Ex-Participants)
 
 #### Obtener todos los ex-participantes
 
@@ -529,12 +469,6 @@ GET /api/programas?locale=es&pagination[page]=2&pagination[pageSize]=10&populate
 GET /api/programas?locale=es&filters[nombre][$contains]=Talento&populate=*
 ```
 
-### Filtrar por etiquetas
-
-```bash
-# Programas con una etiqueta específica
-GET /api/programas?locale=es&filters[etiquetas][slug][$eq]=emprendimiento&populate=*
-```
 
 ---
 
@@ -583,14 +517,6 @@ async function getProgramsByType(type: string) {
   return data;
 }
 
-// Obtener todas las etiquetas
-async function getProgramTags() {
-  const response = await fetch(
-    `${API_BASE_URL}/program-tags?locale=${LOCALE}`
-  );
-  const data = await response.json();
-  return data;
-}
 ```
 
 ### React Hook Example
@@ -825,8 +751,6 @@ Para que los endpoints funcionen sin autenticación, asegúrate de configurar lo
 2. Habilita los siguientes permisos:
    - `programa.find`
    - `programa.findOne`
-   - `program-tag.find`
-   - `program-tag.findOne`
    - `testimonial.find`
    - `testimonial.findOne`
    - `ex-participant.find`
@@ -892,9 +816,6 @@ export interface Program {
   imagenPrograma?: Media;
   videoMasterclass?: VideoMasterclass;
   dossier?: Media;
-  etiquetas?: {
-    data: ProgramTag[];
-  };
   objetivosAprendizaje?: ObjetivoAprendizaje[];
   testimonios?: {
     data: Testimonial[];
@@ -943,14 +864,6 @@ export interface VideoMasterclass {
   plataforma: 'youtube' | 'vimeo' | 'uploaded';
   embedId?: string;
   url?: string;
-}
-
-export interface ProgramTag {
-  id: number;
-  documentId: string;
-  name: string;
-  slug: string;
-  color?: string;
 }
 
 export interface ObjetivoAprendizaje {
@@ -1024,7 +937,6 @@ export interface StrapiSingleResponse<T> {
 - [ ] Configurar permisos públicos en Strapi (o crear API Token)
 - [ ] Implementar función para obtener programas
 - [ ] Implementar función para obtener programa por slug
-- [ ] Implementar función para obtener etiquetas
 - [ ] Implementar función para obtener testimonios
 - [ ] Implementar función para obtener ex-participantes
 - [ ] Implementar manejo de imágenes (URLs completas)
