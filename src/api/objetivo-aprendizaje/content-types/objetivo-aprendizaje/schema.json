@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "objetivos_aprendizaje",
+  "info": {
+    "singularName": "objetivo-aprendizaje",
+    "pluralName": "objetivos-aprendizaje",
+    "displayName": "Objetivo Aprendizaje",
+    "description": "Objetivos de aprendizaje por programa (collection type con i18n)"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "titulo": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "descripcion": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "badge": {
+      "type": "string",
+      "required": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "icono": {
+      "type": "string",
+      "required": false,
+      "description": "Nombre del icono (ej. Rocket)"
+    },
+    "orden": {
+      "type": "integer",
+      "required": true
+    },
+    "programa": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::programa.programa",
+      "required": true,
+      "description": "Programa al que pertenece este objetivo"
+    }
+  }
+}

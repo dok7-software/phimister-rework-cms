@@ -194,16 +194,6 @@
         "files"
       ]
     },
-    "objetivosAprendizaje": {
-      "type": "component",
-      "repeatable": true,
-      "component": "programa.objetivo-aprendizaje",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "testimonios": {
       "type": "relation",
       "relation": "manyToMany",

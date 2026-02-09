@@ -582,6 +582,63 @@ export interface ApiMiembroEquipoMiembroEquipo
   };
 }
 
+export interface ApiObjetivoAprendizajeObjetivoAprendizaje
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'objetivos_aprendizaje';
+  info: {
+    description: 'Objetivos de aprendizaje por programa (collection type con i18n)';
+    displayName: 'Objetivo Aprendizaje';
+    pluralName: 'objetivos-aprendizaje';
+    singularName: 'objetivo-aprendizaje';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    badge: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    icono: Schema.Attribute.String;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::objetivo-aprendizaje.objetivo-aprendizaje'
+    >;
+    orden: Schema.Attribute.Integer & Schema.Attribute.Required;
+    programa: Schema.Attribute.Relation<'manyToOne', 'api::programa.programa'> &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProgramTagProgramTag extends Struct.CollectionTypeSchema {
   collectionName: 'program_tags';
   info: {
@@ -724,15 +781,6 @@ export interface ApiProgramaPrograma extends Struct.CollectionTypeSchema {
       }>;
     nombre: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    objetivosAprendizaje: Schema.Attribute.Component<
-      'programa.objetivo-aprendizaje',
-      true
-    > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1484,6 +1532,7 @@ declare module '@strapi/strapi' {
       'api::home.home': ApiHomeHome;
       'api::mentor.mentor': ApiMentorMentor;
       'api::miembro-equipo.miembro-equipo': ApiMiembroEquipoMiembroEquipo;
+      'api::objetivo-aprendizaje.objetivo-aprendizaje': ApiObjetivoAprendizajeObjetivoAprendizaje;
       'api::program-tag.program-tag': ApiProgramTagProgramTag;
       'api::programa.programa': ApiProgramaPrograma;
       'api::sobre-nosotros.sobre-nosotros': ApiSobreNosotrosSobreNosotros;
