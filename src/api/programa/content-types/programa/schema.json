@@ -28,6 +28,12 @@
       "required": false,
       "description": "Nombre del icono lucide-react (ej: TrendingUp, Rocket, Users)"
     },
+    "orden": {
+      "type": "integer",
+      "required": false,
+      "default": 0,
+      "description": "Orden de visualización (ej. en listados y en la Home)"
+    },
     "nombre": {
       "type": "string",
       "required": true,

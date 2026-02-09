@@ -497,6 +497,7 @@ export interface ApiMentorMentor extends Struct.CollectionTypeSchema {
   info: {
     description: 'Mentores de Phimister';
     displayName: 'Mentor';
+    mainField: 'nombre';
     pluralName: 'mentores';
     singularName: 'mentor';
   };
@@ -727,6 +728,7 @@ export interface ApiProgramaPrograma extends Struct.CollectionTypeSchema {
       'programa.objetivo-aprendizaje',
       true
     >;
+    orden: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     paginaActiva: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<true>;
