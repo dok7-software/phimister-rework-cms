@@ -374,7 +374,7 @@ export interface ApiExParticipantExParticipant
   collectionName: 'ex_participants';
   info: {
     description: '';
-    displayName: 'ExParticipant';
+    displayName: '2.4 Ex Participant';
     pluralName: 'ex-participants';
     singularName: 'ex-participant';
   };
@@ -415,11 +415,41 @@ export interface ApiExParticipantExParticipant
   };
 }
 
+export interface ApiGoogleTagManagerGoogleTagManager
+  extends Struct.SingleTypeSchema {
+  collectionName: 'google_tag_managers';
+  info: {
+    description: 'C\u00F3digo de la etiqueta GTM para insertar en el head';
+    displayName: '5. Google Tag Manager';
+    pluralName: 'google-tag-managers';
+    singularName: 'google-tag-manager';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    etiqueta: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::google-tag-manager.google-tag-manager'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHomeHome extends Struct.SingleTypeSchema {
   collectionName: 'homes';
   info: {
     description: '';
-    displayName: 'Home';
+    displayName: '1. Home';
     pluralName: 'homes';
     singularName: 'home';
   };
@@ -496,7 +526,7 @@ export interface ApiMentorMentor extends Struct.CollectionTypeSchema {
   collectionName: 'mentores';
   info: {
     description: 'Mentores de Phimister';
-    displayName: 'Mentor';
+    displayName: '1.1 Mentor';
     mainField: 'nombre';
     pluralName: 'mentores';
     singularName: 'mentor';
@@ -535,7 +565,7 @@ export interface ApiMiembroEquipoMiembroEquipo
   collectionName: 'miembros_equipo';
   info: {
     description: 'Miembros del equipo de Phimister';
-    displayName: 'Miembro del Equipo';
+    displayName: '3.1 Miembro del Equipo';
     pluralName: 'miembros-equipo';
     singularName: 'miembro-equipo';
   };
@@ -587,7 +617,7 @@ export interface ApiObjetivoAprendizajeObjetivoAprendizaje
   collectionName: 'objetivos_aprendizaje';
   info: {
     description: 'Objetivos de aprendizaje por programa (collection type con i18n)';
-    displayName: 'Objetivo Aprendizaje';
+    displayName: '2.1 Objetivo Aprendizaje';
     pluralName: 'objetivos-aprendizaje';
     singularName: 'objetivo-aprendizaje';
   };
@@ -639,11 +669,124 @@ export interface ApiObjetivoAprendizajeObjetivoAprendizaje
   };
 }
 
+export interface ApiPaginaContactoPaginaContacto
+  extends Struct.SingleTypeSchema {
+  collectionName: 'paginas_contacto';
+  info: {
+    description: 'Datos y textos de la p\u00E1gina /contacto';
+    displayName: '4. P\u00E1gina de Contacto';
+    pluralName: 'paginas-contacto';
+    singularName: 'pagina-contacto';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    descripcionSEO: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    direccion: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    email: Schema.Attribute.String & Schema.Attribute.Required;
+    emailLabel: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    etiquetaSeccion: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    horario: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    horarioLabel: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pagina-contacto.pagina-contacto'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    telefono: Schema.Attribute.String & Schema.Attribute.Required;
+    telefonoLabel: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    titulo: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tituloInfo: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tituloSEO: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ubicacionLabel: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    whatsappNumero: Schema.Attribute.String;
+  };
+}
+
 export interface ApiProgramTagProgramTag extends Struct.CollectionTypeSchema {
   collectionName: 'program_tags';
   info: {
     description: 'Etiquetas para categorizar programas';
-    displayName: 'Program Tag';
+    displayName: '2.2 Program Tag';
     pluralName: 'program-tags';
     singularName: 'program-tag';
   };
@@ -690,7 +833,7 @@ export interface ApiProgramaPrograma extends Struct.CollectionTypeSchema {
   collectionName: 'programas';
   info: {
     description: '';
-    displayName: 'Programa';
+    displayName: '2. Programa';
     mainField: 'nombre';
     pluralName: 'programas';
     singularName: 'programa';
@@ -841,7 +984,7 @@ export interface ApiSobreNosotrosSobreNosotros extends Struct.SingleTypeSchema {
   collectionName: 'sobre_nosotros';
   info: {
     description: 'P\u00E1gina About Us de Phimister';
-    displayName: 'Sobre Nosotros';
+    displayName: '3. Sobre Nosotros';
     pluralName: 'sobre-nosotros-pages';
     singularName: 'sobre-nosotros';
   };
@@ -927,7 +1070,7 @@ export interface ApiSocioSocio extends Struct.CollectionTypeSchema {
   collectionName: 'socios';
   info: {
     description: 'Partners y socios de Phimister';
-    displayName: 'Socio';
+    displayName: '2.5 Socio';
     pluralName: 'socios';
     singularName: 'socio';
   };
@@ -965,7 +1108,7 @@ export interface ApiSocioSocio extends Struct.CollectionTypeSchema {
 export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
   collectionName: 'testimonials';
   info: {
-    displayName: 'Testimonial';
+    displayName: '2.3 Testimonial';
     pluralName: 'testimonials';
     singularName: 'testimonial';
   };
@@ -1529,10 +1672,12 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::ex-participant.ex-participant': ApiExParticipantExParticipant;
+      'api::google-tag-manager.google-tag-manager': ApiGoogleTagManagerGoogleTagManager;
       'api::home.home': ApiHomeHome;
       'api::mentor.mentor': ApiMentorMentor;
       'api::miembro-equipo.miembro-equipo': ApiMiembroEquipoMiembroEquipo;
       'api::objetivo-aprendizaje.objetivo-aprendizaje': ApiObjetivoAprendizajeObjetivoAprendizaje;
+      'api::pagina-contacto.pagina-contacto': ApiPaginaContactoPaginaContacto;
       'api::program-tag.program-tag': ApiProgramTagProgramTag;
       'api::programa.programa': ApiProgramaPrograma;
       'api::sobre-nosotros.sobre-nosotros': ApiSobreNosotrosSobreNosotros;

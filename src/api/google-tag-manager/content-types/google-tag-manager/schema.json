@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "google_tag_managers",
+  "info": {
+    "singularName": "google-tag-manager",
+    "pluralName": "google-tag-managers",
+    "displayName": "5. Google Tag Manager",
+    "description": "Código de la etiqueta GTM para insertar en el head"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "etiqueta": {
+      "type": "text",
+      "required": false,
+      "description": "Código de la etiqueta GTM (script que se coloca en el head)"
+    }
+  }
+}

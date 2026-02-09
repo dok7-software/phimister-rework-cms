@@ -4,7 +4,7 @@
   "info": {
     "singularName": "miembro-equipo",
     "pluralName": "miembros-equipo",
-    "displayName": "Miembro del Equipo",
+    "displayName": "3.1 Miembro del Equipo",
     "description": "Miembros del equipo de Phimister"
   },
   "options": {
@@ -65,4 +65,3 @@
     }
   }
 }
-

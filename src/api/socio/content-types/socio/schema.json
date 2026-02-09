@@ -4,7 +4,7 @@
   "info": {
     "singularName": "socio",
     "pluralName": "socios",
-    "displayName": "Socio",
+    "displayName": "2.5 Socio",
     "description": "Partners y socios de Phimister"
   },
   "options": {
@@ -48,4 +48,3 @@
     }
   }
 }
-
