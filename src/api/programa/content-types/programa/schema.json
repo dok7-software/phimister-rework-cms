@@ -197,7 +197,12 @@
     "objetivosAprendizaje": {
       "type": "component",
       "repeatable": true,
-      "component": "programa.objetivo-aprendizaje"
+      "component": "programa.objetivo-aprendizaje",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "testimonios": {
       "type": "relation",
@@ -217,7 +222,12 @@
     "cta": {
       "type": "component",
       "repeatable": false,
-      "component": "programa.cta-programa"
+      "component": "programa.cta-programa",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "tituloSEO": {
       "type": "string",
@@ -230,7 +240,12 @@
     "preguntasFrecuentes": {
       "type": "component",
       "repeatable": true,
-      "component": "programa.pregunta-frecuente"
+      "component": "programa.pregunta-frecuente",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "formulario": {
       "type": "text",

@@ -659,7 +659,12 @@ export interface ApiProgramaPrograma extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    cta: Schema.Attribute.Component<'programa.cta-programa', false>;
+    cta: Schema.Attribute.Component<'programa.cta-programa', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     descripcionCompleta: Schema.Attribute.RichText &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -727,7 +732,12 @@ export interface ApiProgramaPrograma extends Struct.CollectionTypeSchema {
     objetivosAprendizaje: Schema.Attribute.Component<
       'programa.objetivo-aprendizaje',
       true
-    >;
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     orden: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     paginaActiva: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
@@ -735,7 +745,12 @@ export interface ApiProgramaPrograma extends Struct.CollectionTypeSchema {
     preguntasFrecuentes: Schema.Attribute.Component<
       'programa.pregunta-frecuente',
       true
-    >;
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     requisitoEdad: Schema.Attribute.String &
       Schema.Attribute.Required &
