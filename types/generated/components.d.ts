@@ -105,25 +105,6 @@ export interface HomeEstadisticaInternacional extends Struct.ComponentSchema {
   };
 }
 
-export interface HomeEtiquetaPrograma extends Struct.ComponentSchema {
-  collectionName: 'components_home_etiquetas_programa';
-  info: {
-    description: 'Etiqueta de programa (ej: Marketing, Emprendimiento) para la secci\u00F3n \u00BFQu\u00E9 quieres aprender?';
-    displayName: 'Etiqueta Programa';
-  };
-  attributes: {
-    icono: Schema.Attribute.String & Schema.Attribute.Required;
-    nombre: Schema.Attribute.Text &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    urlPrograma: Schema.Attribute.String;
-  };
-}
-
 export interface HomeHeroHome extends Struct.ComponentSchema {
   collectionName: 'components_home_hero_homes';
   info: {
@@ -168,28 +149,6 @@ export interface HomeHeroHome extends Struct.ComponentSchema {
         };
       }>;
     tituloHero: Schema.Attribute.Text &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-  };
-}
-
-export interface HomeSeccionEtiquetasProgramas extends Struct.ComponentSchema {
-  collectionName: 'components_home_seccion_etiquetas_programas';
-  info: {
-    description: '\u00BFQu\u00E9 quieres aprender? - Etiquetas de programas';
-    displayName: 'Secci\u00F3n Etiquetas Programas';
-  };
-  attributes: {
-    etiquetasProgramas: Schema.Attribute.Component<
-      'home.etiqueta-programa',
-      true
-    > &
-      Schema.Attribute.Required;
-    tituloEtiquetasProgramas: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -633,9 +592,7 @@ declare module '@strapi/strapi' {
       'home.cta-agendar-llamada': HomeCtaAgendarLlamada;
       'home.cta-final': HomeCtaFinal;
       'home.estadistica-internacional': HomeEstadisticaInternacional;
-      'home.etiqueta-programa': HomeEtiquetaPrograma;
       'home.hero-home': HomeHeroHome;
-      'home.seccion-etiquetas-programas': HomeSeccionEtiquetasProgramas;
       'home.seccion-experiencia-internacional': HomeSeccionExperienciaInternacional;
       'home.seccion-filosofia': HomeSeccionFilosofia;
       'home.valor-filosofia': HomeValorFilosofia;

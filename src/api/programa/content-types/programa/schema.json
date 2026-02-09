@@ -5,7 +5,8 @@
     "singularName": "programa",
     "pluralName": "programas",
     "displayName": "Programa",
-    "description": ""
+    "description": "",
+    "mainField": "nombre"
   },
   "options": {
     "draftAndPublish": true
@@ -21,6 +22,11 @@
       "targetField": "nombre",
       "required": true,
       "unique": true
+    },
+    "icono": {
+      "type": "string",
+      "required": false,
+      "description": "Nombre del icono lucide-react (ej: TrendingUp, Rocket, Users)"
     },
     "nombre": {
       "type": "string",

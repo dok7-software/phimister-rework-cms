@@ -31,7 +31,7 @@ Documentación de los content types **Home** (Single Type) y **Mentor** (Collect
 **Content Type:** `home`  
 **Tabla principal (PostgreSQL):** `homes`
 
-Home es un **Single Type**: solo existe un registro por locale. Contiene el hero, carrusel de vídeos, etiquetas de programas, filosofía, experiencia internacional, CTAs y la relación con mentores.
+Home es un **Single Type**: solo existe un registro por locale. Contiene el hero, carrusel de vídeos, programas (relación), filosofía, experiencia internacional, CTAs y la relación con mentores.
 
 ### 2.1 Hero Section
 
@@ -66,22 +66,27 @@ Array de ítems (componente repetible). Cada ítem:
 
 ---
 
-### 2.3 Program Tags (¿Qué quieres aprender?)
+### 2.3 Sección Programas (¿Qué quieres aprender?)
 
-| Campo (API)               | Tipo     | Descripción                         | Requerido | Localizable |
-|---------------------------|----------|-------------------------------------|-----------|-------------|
-| `tituloEtiquetasProgramas`| string   | Título de la sección                | ✅        | ✅          |
-| `etiquetasProgramas`      | component| Lista de etiquetas (ver abajo)      | ✅        | -           |
+La Home relaciona **programas** directamente con el content type **Programa**. El título de la sección y la lista de programas se obtienen así:
 
-Cada ítem de **etiquetasProgramas**:
+| Campo (API)               | Tipo     | Descripción                              | Requerido | Localizable |
+|---------------------------|----------|------------------------------------------|-----------|-------------|
+| `tituloSeccionProgramas`  | string   | Título de la sección (ej: "¿Qué quieres aprender?") | ❌  | ✅          |
+| `programas`               | relation | Many to many → Collection **Programa**   | ❌        | -           |
 
-| Campo (API)  | Tipo   | Descripción / Ejemplo              | Requerido | Localizable |
-|-------------|--------|------------------------------------|-----------|-------------|
-| `nombre`    | text   | ej: "Marketing", "Emprendimiento"  | ✅        | ✅          |
-| `icono`     | string | Nombre icono lucide-react          | ✅        | ❌          |
-| `urlPrograma`| string| URL amigable, ej: "talento-joven"   | ❌        | ❌          |
+Cada ítem de **programas** (al hacer `populate`) es un **Programa** con todos sus campos. Para la sección en la Home suelen usarse:
 
-**Componentes (BD):** `components_home_seccion_etiquetas_programas`, `components_home_etiquetas_programa`
+| Campo (API) en Programa | Tipo   | Uso en la Home                    |
+|-------------------------|--------|-----------------------------------|
+| `nombre`                | string | Nombre del programa (i18n)        |
+| `icono`                 | string | Nombre del icono lucide-react     |
+| `slug`                  | uid    | URL amigable (ej: "talento-joven")|
+| `descripcionCorta`      | text   | Descripción breve (i18n)          |
+| `miniatura`             | media  | Imagen del programa (opcional)    |
+
+**Mostrar por nombre en el front:** La API devuelve cada programa con `nombre` (y `slug` para URLs). En la app, usa `programa.nombre` para etiquetas y títulos; el content type Programa tiene `mainField: "nombre"` para que el panel de administración muestre el nombre en el selector de la relación.
+No hay tablas de componentes para esta sección; la relación se almacena en tabla de enlace (ver §5).
 
 ---
 
@@ -206,12 +211,12 @@ GET /api/home?locale=ca
 
 #### Home con todo poblado (recomendado para la página)
 
-Incluir componentes y relación con mentores, y medios (imágenes/vídeos):
+Incluir componentes, relaciones (programas y mentores) y medios:
 
 ```http
 GET /api/home?locale=es&populate[HeroHome][populate]=*
 GET /api/home?locale=es&populate[VideoCarrusel][populate]=*
-GET /api/home?locale=es&populate[EtiquetasProgramas][populate][etiquetasProgramas]=*
+GET /api/home?locale=es&populate[programas][populate][0]=miniatura
 GET /api/home?locale=es&populate[Filosofia][populate][valoresFilosofia]=*
 GET /api/home?locale=es&populate[ExperienciaInternacional][populate][estadisticasInternacionales]=*
 GET /api/home?locale=es&populate[CtaAgendarLlamada]=*
@@ -219,13 +224,19 @@ GET /api/home?locale=es&populate[CtaFinal]=*
 GET /api/home?locale=es&populate[mentores][populate]=*
 ```
 
-En una sola petición (Strapi 5), usando `populate=*` o un objeto de populate anidado:
+En una sola petición (Strapi 5):
 
 ```http
 GET /api/home?locale=es&populate=*
 ```
 
-Si con `populate=*` no se rellenan todos los niveles, usar populate explícito por sección como arriba.
+Para asegurar que **programas** traiga los campos del Programa (nombre, icono, slug, miniatura), se puede usar:
+
+```http
+GET /api/home?locale=es&populate[programas][populate][0]=miniatura
+```
+
+(o `populate=*` si ya incluye la relación programas con sus campos).
 
 **Ejemplo con `fetch` (ES):**
 
@@ -323,8 +334,7 @@ Nombres típicos que Strapi usa. Pueden variar según versión y config.
 | Registro principal Home  | `homes`       |
 | Hero                     | `components_home_hero_homes` (vinculado por Strapi a `homes`) |
 | Vídeos carrusel          | `components_home_video_carrusels` |
-| Sección etiquetas        | `components_home_seccion_etiquetas_programas` |
-| Etiqueta programa        | `components_home_etiquetas_programa` |
+| Sección programas        | Sin componente; relación en `homes_programas_lnk` (ver abajo) |
 | Sección filosofía        | `components_home_seccion_filosofias` |
 | Valor filosofía          | `components_home_valores_filosofia` |
 | Sección exp. internacional | `components_home_seccion_experiencia_internacionals` |
@@ -338,13 +348,14 @@ Nombres típicos que Strapi usa. Pueden variar según versión y config.
 |------------------|----------------|
 | Registros mentor | `mentores`    |
 
-### Relación Home ↔ Mentores (Many to Many)
+### Relaciones Many to Many (tablas de enlace)
 
-Strapi suele crear una tabla de enlace. Nombre típico:
+Strapi crea tablas de enlace para las relaciones manyToMany. Nombres típicos:
 
-| Uso              | Nombre en BD (convención Strapi) |
-|------------------|-----------------------------------|
-| Enlace Home–Mentor | `homes_mentores_lnk` (o similar con sufijo `_lnk`) |
+| Uso                    | Nombre en BD (convención Strapi) |
+|------------------------|-----------------------------------|
+| Enlace Home ↔ Mentores | `homes_mentores_lnk`              |
+| Enlace Home ↔ Programas| `homes_programas_lnk`              |
 
 Para comprobar el nombre exacto en tu BD:
 
@@ -356,6 +367,7 @@ SELECT tablename FROM pg_tables WHERE schemaname = 'public' AND tablename LIKE '
 
 ## Changelog
 
-- **Home:** Hero, Carrusel de vídeos, Etiquetas de programas, Filosofía, Experiencia internacional, CTA Agendar Llamada, CTA Final, relación con Mentores.
+- **Home:** Hero, Carrusel de vídeos, Programas (relación a Programa), Filosofía, Experiencia internacional, CTA Agendar Llamada, CTA Final, relación con Mentores.
+- **Programa:** Campo opcional `icono` (nombre icono lucide-react) para usar en la sección de programas de la Home.
 - **Mentor:** Collection type con nombre, rol, bio, foto, linkedin, orden, activo.
 - **i18n:** Campos localizables en Home para `es` y `ca`; APIs con `?locale=es` y `?locale=ca`.

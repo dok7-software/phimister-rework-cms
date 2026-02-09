@@ -450,15 +450,6 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
           localized: true;
         };
       }>;
-    EtiquetasProgramas: Schema.Attribute.Component<
-      'home.seccion-etiquetas-programas',
-      false
-    > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     ExperienciaInternacional: Schema.Attribute.Component<
       'home.seccion-experiencia-internacional',
       false
@@ -483,7 +474,17 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'>;
     mentores: Schema.Attribute.Relation<'manyToMany', 'api::mentor.mentor'>;
+    programas: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::programa.programa'
+    >;
     publishedAt: Schema.Attribute.DateTime;
+    tituloSeccionProgramas: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -632,6 +633,7 @@ export interface ApiProgramaPrograma extends Struct.CollectionTypeSchema {
   info: {
     description: '';
     displayName: 'Programa';
+    mainField: 'nombre';
     pluralName: 'programas';
     singularName: 'programa';
   };
@@ -689,6 +691,7 @@ export interface ApiProgramaPrograma extends Struct.CollectionTypeSchema {
     fechaFin: Schema.Attribute.Date;
     fechaInicio: Schema.Attribute.Date;
     formulario: Schema.Attribute.Text;
+    icono: Schema.Attribute.String;
     imagenHero: Schema.Attribute.Media<'images'>;
     imagenPrograma: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String;

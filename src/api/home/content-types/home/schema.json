@@ -31,15 +31,21 @@
       "repeatable": true,
       "component": "home.video-carrusel"
     },
-    "EtiquetasProgramas": {
-      "type": "component",
-      "repeatable": false,
-      "component": "home.seccion-etiquetas-programas",
+    "tituloSeccionProgramas": {
+      "type": "string",
+      "required": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "description": "Título de la sección (ej: ¿Qué quieres aprender?)"
+    },
+    "programas": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::programa.programa",
+      "description": "Programas destacados en la Home"
     },
     "Filosofia": {
       "type": "component",

@@ -5,7 +5,8 @@
     "singularName": "mentor",
     "pluralName": "mentores",
     "displayName": "Mentor",
-    "description": "Mentores de Phimister"
+    "description": "Mentores de Phimister",
+    "mainField": "nombre"
   },
   "options": {
     "draftAndPublish": true
