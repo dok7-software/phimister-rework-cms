@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mentores",
+  "info": {
+    "singularName": "mentor",
+    "pluralName": "mentores",
+    "displayName": "Mentor",
+    "description": "Mentores de Phimister"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nombre": {
+      "type": "text",
+      "required": true
+    },
+    "rol": {
+      "type": "text",
+      "required": true
+    },
+    "bio": {
+      "type": "text",
+      "required": false
+    },
+    "foto": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "linkedin": {
+      "type": "string",
+      "required": false
+    },
+    "orden": {
+      "type": "integer",
+      "required": true
+    },
+    "activo": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    }
+  }
+}

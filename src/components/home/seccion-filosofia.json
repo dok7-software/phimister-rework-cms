@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_home_seccion_filosofias",
+  "info": {
+    "displayName": "Sección Filosofía",
+    "description": "Nuestra Filosofía - Valores"
+  },
+  "options": {},
+  "attributes": {
+    "etiquetaSeccionFilosofia": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "tituloFilosofia": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "valoresFilosofia": {
+      "type": "component",
+      "repeatable": true,
+      "component": "home.valor-filosofia",
+      "required": true
+    }
+  }
+}

@@ -30,6 +30,62 @@
       "type": "component",
       "repeatable": true,
       "component": "home.video-carrusel"
+    },
+    "EtiquetasProgramas": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.seccion-etiquetas-programas",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "Filosofia": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.seccion-filosofia",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "ExperienciaInternacional": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.seccion-experiencia-internacional",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "CtaAgendarLlamada": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.cta-agendar-llamada",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "CtaFinal": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.cta-final",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "mentores": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::mentor.mentor",
+      "description": "Mentores destacados en la Home"
     }
   }
 }

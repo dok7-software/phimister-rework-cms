@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_home_etiquetas_programa",
+  "info": {
+    "displayName": "Etiqueta Programa",
+    "description": "Etiqueta de programa (ej: Marketing, Emprendimiento) para la sección ¿Qué quieres aprender?"
+  },
+  "options": {},
+  "attributes": {
+    "nombre": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "icono": {
+      "type": "string",
+      "required": true,
+      "description": "Nombre del icono de lucide-react (ej: TrendingUp, Rocket, Users)"
+    },
+    "urlPrograma": {
+      "type": "string",
+      "required": false,
+      "description": "URL amigable del programa relacionado (ej: talento-joven)"
+    }
+  }
+}

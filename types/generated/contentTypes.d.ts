@@ -435,6 +435,45 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    CtaAgendarLlamada: Schema.Attribute.Component<
+      'home.cta-agendar-llamada',
+      false
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    CtaFinal: Schema.Attribute.Component<'home.cta-final', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    EtiquetasProgramas: Schema.Attribute.Component<
+      'home.seccion-etiquetas-programas',
+      false
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ExperienciaInternacional: Schema.Attribute.Component<
+      'home.seccion-experiencia-internacional',
+      false
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Filosofia: Schema.Attribute.Component<'home.seccion-filosofia', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     HeroHome: Schema.Attribute.Component<'home.hero-home', false> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -443,11 +482,49 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
       }>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'>;
+    mentores: Schema.Attribute.Relation<'manyToMany', 'api::mentor.mentor'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     VideoCarrusel: Schema.Attribute.Component<'home.video-carrusel', true>;
+  };
+}
+
+export interface ApiMentorMentor extends Struct.CollectionTypeSchema {
+  collectionName: 'mentores';
+  info: {
+    description: 'Mentores de Phimister';
+    displayName: 'Mentor';
+    pluralName: 'mentores';
+    singularName: 'mentor';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    activo: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    bio: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    foto: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    linkedin: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::mentor.mentor'
+    > &
+      Schema.Attribute.Private;
+    nombre: Schema.Attribute.Text & Schema.Attribute.Required;
+    orden: Schema.Attribute.Integer & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    rol: Schema.Attribute.Text & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1385,6 +1462,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::ex-participant.ex-participant': ApiExParticipantExParticipant;
       'api::home.home': ApiHomeHome;
+      'api::mentor.mentor': ApiMentorMentor;
       'api::miembro-equipo.miembro-equipo': ApiMiembroEquipoMiembroEquipo;
       'api::program-tag.program-tag': ApiProgramTagProgramTag;
       'api::programa.programa': ApiProgramaPrograma;

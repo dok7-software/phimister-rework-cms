@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_home_valores_filosofia",
+  "info": {
+    "displayName": "Valor Filosofía",
+    "description": "Un valor de la sección Nuestra Filosofía"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "descripcion": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "collectionName": "components_home_cta_finals",
+  "info": {
+    "displayName": "CTA Final",
+    "description": "Sección Final CTA - Plazas limitadas"
+  },
+  "options": {},
+  "attributes": {
+    "insigniaCtaFinal": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "tituloCtaFinal": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "descripcionCtaFinal": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "ctaPrincipalFinal": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "ctaSecundarioFinal": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}

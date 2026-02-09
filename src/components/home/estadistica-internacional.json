@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_home_estadisticas_internacionales",
+  "info": {
+    "displayName": "Estadística Internacional",
+    "description": "Una estadística (valor + etiqueta) de la sección Experiencia Internacional"
+  },
+  "options": {},
+  "attributes": {
+    "valor": {
+      "type": "string",
+      "required": true,
+      "description": "Valor (ej: 1.500+, 80+)"
+    },
+    "etiqueta": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}

@@ -11,6 +11,119 @@ export interface HomeCarruselHero extends Struct.ComponentSchema {
   };
 }
 
+export interface HomeCtaAgendarLlamada extends Struct.ComponentSchema {
+  collectionName: 'components_home_cta_agendar_llamadas';
+  info: {
+    description: 'Secci\u00F3n Schedule Call CTA';
+    displayName: 'CTA Agendar Llamada';
+  };
+  attributes: {
+    ctaAgendarLlamada: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    descripcionAgendarLlamada: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tituloAgendarLlamada: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
+export interface HomeCtaFinal extends Struct.ComponentSchema {
+  collectionName: 'components_home_cta_finals';
+  info: {
+    description: 'Secci\u00F3n Final CTA - Plazas limitadas';
+    displayName: 'CTA Final';
+  };
+  attributes: {
+    ctaPrincipalFinal: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ctaSecundarioFinal: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    descripcionCtaFinal: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    insigniaCtaFinal: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tituloCtaFinal: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
+export interface HomeEstadisticaInternacional extends Struct.ComponentSchema {
+  collectionName: 'components_home_estadisticas_internacionales';
+  info: {
+    description: 'Una estad\u00EDstica (valor + etiqueta) de la secci\u00F3n Experiencia Internacional';
+    displayName: 'Estad\u00EDstica Internacional';
+  };
+  attributes: {
+    etiqueta: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    valor: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface HomeEtiquetaPrograma extends Struct.ComponentSchema {
+  collectionName: 'components_home_etiquetas_programa';
+  info: {
+    description: 'Etiqueta de programa (ej: Marketing, Emprendimiento) para la secci\u00F3n \u00BFQu\u00E9 quieres aprender?';
+    displayName: 'Etiqueta Programa';
+  };
+  attributes: {
+    icono: Schema.Attribute.String & Schema.Attribute.Required;
+    nombre: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    urlPrograma: Schema.Attribute.String;
+  };
+}
+
 export interface HomeHeroHome extends Struct.ComponentSchema {
   collectionName: 'components_home_hero_homes';
   info: {
@@ -55,6 +168,136 @@ export interface HomeHeroHome extends Struct.ComponentSchema {
         };
       }>;
     tituloHero: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
+export interface HomeSeccionEtiquetasProgramas extends Struct.ComponentSchema {
+  collectionName: 'components_home_seccion_etiquetas_programas';
+  info: {
+    description: '\u00BFQu\u00E9 quieres aprender? - Etiquetas de programas';
+    displayName: 'Secci\u00F3n Etiquetas Programas';
+  };
+  attributes: {
+    etiquetasProgramas: Schema.Attribute.Component<
+      'home.etiqueta-programa',
+      true
+    > &
+      Schema.Attribute.Required;
+    tituloEtiquetasProgramas: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
+export interface HomeSeccionExperienciaInternacional
+  extends Struct.ComponentSchema {
+  collectionName: 'components_home_seccion_experiencia_internacionals';
+  info: {
+    description: 'Experiencia Internacional - Alcance global';
+    displayName: 'Secci\u00F3n Experiencia Internacional';
+  };
+  attributes: {
+    descripcionInternacional: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    descripcionRedInternacional1: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    descripcionRedInternacional2: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    estadisticasInternacionales: Schema.Attribute.Component<
+      'home.estadistica-internacional',
+      true
+    > &
+      Schema.Attribute.Required;
+    etiquetaSeccionInternacional: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tituloInternacional: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tituloRedInternacional: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
+export interface HomeSeccionFilosofia extends Struct.ComponentSchema {
+  collectionName: 'components_home_seccion_filosofias';
+  info: {
+    description: 'Nuestra Filosof\u00EDa - Valores';
+    displayName: 'Secci\u00F3n Filosof\u00EDa';
+  };
+  attributes: {
+    etiquetaSeccionFilosofia: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tituloFilosofia: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    valoresFilosofia: Schema.Attribute.Component<'home.valor-filosofia', true> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface HomeValorFilosofia extends Struct.ComponentSchema {
+  collectionName: 'components_home_valores_filosofia';
+  info: {
+    description: 'Un valor de la secci\u00F3n Nuestra Filosof\u00EDa';
+    displayName: 'Valor Filosof\u00EDa';
+  };
+  attributes: {
+    descripcion: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    titulo: Schema.Attribute.Text &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -387,7 +630,15 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'home.carrusel-hero': HomeCarruselHero;
+      'home.cta-agendar-llamada': HomeCtaAgendarLlamada;
+      'home.cta-final': HomeCtaFinal;
+      'home.estadistica-internacional': HomeEstadisticaInternacional;
+      'home.etiqueta-programa': HomeEtiquetaPrograma;
       'home.hero-home': HomeHeroHome;
+      'home.seccion-etiquetas-programas': HomeSeccionEtiquetasProgramas;
+      'home.seccion-experiencia-internacional': HomeSeccionExperienciaInternacional;
+      'home.seccion-filosofia': HomeSeccionFilosofia;
+      'home.valor-filosofia': HomeValorFilosofia;
       'home.video-carrusel': HomeVideoCarrusel;
       'programa.cta-programa': ProgramaCtaPrograma;
       'programa.objetivo-aprendizaje': ProgramaObjetivoAprendizaje;

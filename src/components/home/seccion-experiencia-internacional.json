@@ -1,0 +1,70 @@
+{
+  "collectionName": "components_home_seccion_experiencia_internacionals",
+  "info": {
+    "displayName": "Sección Experiencia Internacional",
+    "description": "Experiencia Internacional - Alcance global"
+  },
+  "options": {},
+  "attributes": {
+    "etiquetaSeccionInternacional": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "tituloInternacional": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "descripcionInternacional": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "tituloRedInternacional": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "descripcionRedInternacional1": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "descripcionRedInternacional2": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "estadisticasInternacionales": {
+      "type": "component",
+      "repeatable": true,
+      "component": "home.estadistica-internacional",
+      "required": true
+    }
+  }
+}

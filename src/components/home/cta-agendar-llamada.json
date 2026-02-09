@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_home_cta_agendar_llamadas",
+  "info": {
+    "displayName": "CTA Agendar Llamada",
+    "description": "Sección Schedule Call CTA"
+  },
+  "options": {},
+  "attributes": {
+    "tituloAgendarLlamada": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "descripcionAgendarLlamada": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "ctaAgendarLlamada": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}
